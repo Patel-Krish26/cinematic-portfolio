@@ -76,47 +76,45 @@ export default function CustomCursor() {
         <>
             {/* ── OUTER RING (nareshkhatri style bubble) ─── */}
             <motion.div
-                className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full"
-                style={{
-                    x: rx,
-                    y: ry,
-                    translateX: "-50%",
-                    translateY: "-50%",
-                }}
-                animate={{
-                    opacity:    visible ? 1 : 0,
-                    width:  clicking ? 28 : hovering ? 48 : 40,
-                    height: clicking ? 28 : hovering ? 48 : 40,
-                    background: hovering
-                        ? "rgba(168,85,247,0.18)"
-                        : "transparent",
-                    borderColor: hovering
-                        ? "rgba(168,85,247,0.8)"
-                        : "rgba(168,85,247,0.55)",
-                    borderWidth: hovering ? "1.5px" : "1px",
-                    scale: clicking ? 0.85 : 1,
-                }}
-                transition={{
-                    opacity: { duration: 0.2 },
-                    width:   { type: "spring", stiffness: 300, damping: 24 },
-                    height:  { type: "spring", stiffness: 300, damping: 24 },
-                    background:   { duration: 0.25 },
-                    borderColor:  { duration: 0.2 },
-                    scale:        { duration: 0.1 },
-                }}
-                style2={{
-                    border: "1px solid rgba(168,85,247,0.55)",
-                } as never}
-            >
-                {/* Inner glow fill */}
-                <div
-                    className="absolute inset-0 rounded-full transition-all duration-300"
+                    className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full"
                     style={{
-                        background: hovering
-                            ? "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)"
-                            : "transparent",
+                        x: rx,
+                        y: ry,
+                        translateX: "-50%",
+                        translateY: "-50%",
+                        border: "1px solid rgba(168,85,247,0.55)",
                     }}
-                />
+                    animate={{
+                        opacity: visible ? 1 : 0,
+                        width: clicking ? 28 : hovering ? 48 : 40,
+                        height: clicking ? 28 : hovering ? 48 : 40,
+                        background: hovering
+                            ? "rgba(168,85,247,0.18)"
+                            : "transparent",
+                        borderColor: hovering
+                            ? "rgba(168,85,247,0.8)"
+                            : "rgba(168,85,247,0.55)",
+                        borderWidth: hovering ? "1.5px" : "1px",
+                        scale: clicking ? 0.85 : 1,
+                    }}
+                    transition={{
+                        opacity: { duration: 0.2 },
+                        width: { type: "spring", stiffness: 300, damping: 24 },
+                        height: { type: "spring", stiffness: 300, damping: 24 },
+                        background: { duration: 0.25 },
+                        borderColor: { duration: 0.2 },
+                        scale: { duration: 0.1 },
+                    }}
+                >
+                    {/* Inner glow fill */}
+                    <div
+                        className="absolute inset-0 rounded-full transition-all duration-300"
+                        style={{
+                            background: hovering
+                                ? "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)"
+                                : "transparent",
+                        }}
+                    />
             </motion.div>
 
             {/* ── INNER DOT ─────────────────────────────── */}
