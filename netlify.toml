@@ -1,15 +1,14 @@
 # ============================================================
 # NETLIFY DEPLOYMENT CONFIG
-# Deploy Next.js 14 to Netlify with full SSR support
+# Next.js 14 + App Router
 # ============================================================
 
 [build]
-  command   = "npm run build"
-  publish   = ".next"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "22"
-  NPM_FLAGS    = "--legacy-peer-deps"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
