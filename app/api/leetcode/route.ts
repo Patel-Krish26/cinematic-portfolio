@@ -8,7 +8,7 @@
 import { NextResponse } from "next/server";
 import type { LeetCodeStats, ApiResponse } from "@/types";
 
-const LC_USERNAME = process.env.LEETCODE_USERNAME ?? "gQqv4O2dMw";
+const LC_USERNAME = "gQqv4O2dMw";
 
 const QUERY = `
   query getUserProfile($username: String!) {
