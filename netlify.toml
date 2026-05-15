@@ -1,0 +1,21 @@
+# ============================================================
+# NETLIFY DEPLOYMENT CONFIG
+# Deploy Next.js 14 to Netlify with full SSR support
+# ============================================================
+
+[build]
+  command   = "npm run build"
+  publish   = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS    = "--legacy-peer-deps"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirect all routes to Next.js handler
+[[redirects]]
+  from   = "/*"
+  to     = "/.netlify/functions/___netlify-handler"
+  status = 200

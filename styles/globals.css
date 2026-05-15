@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --color-bg: #050508;
+    --color-bg-2: #0a0a14;
+    --color-surface: #0f0f1e;
+    --color-border: rgba(168,85,247,0.12);
+    --color-purple: #a855f7;
+    --color-cyan: #22d3ee;
+    --color-text: #e2e8f0;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    /* Navbar height tokens — used for clearance calc */
+    --nav-h-mobile: 56px;
+    --nav-h-desktop: 68px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+    html.lenis {
+        height: auto;
+    }
+
+        html.lenis.lenis-smooth {
+            scroll-behavior: auto;
+        }
+
+        html.lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    scrollbar-gutter: stable;
+    min-height: 100%;
+}
+
+/* Custom cursor — only on true pointer (mouse) devices */
+@media (pointer: fine) {
+    body,
+    a, button, input, textarea, select, [role="button"] {
+        cursor: none !important;
+    }
+}
+
+@media (pointer: coarse) {
+    *, *::before, *::after {
+        cursor: auto !important;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg,#7c3aed,#06b6d4);
+    border-radius: 999px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+code, pre, .mono {
+    font-family: var(--font-mono);
+}
+
+::selection {
+    background: rgba(168,85,247,0.32);
+    color: #fff;
+}
+
+@layer components {
+
+    .gradient-text {
+        background: linear-gradient(135deg,#c084fc 0%,#a855f7 45%,#22d3ee 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .glass {
+        background: rgba(10,10,20,0.55);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(168,85,247,0.1);
+    }
+
+    .glass-strong {
+        background: rgba(10,10,20,0.88);
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        border: 1px solid rgba(168,85,247,0.18);
+    }
+
+    .neon-border {
+        border: 1px solid rgba(168,85,247,0.22);
+    }
+
+    .btn-glow {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg,#6d28d9,#9333ea);
+        border: 1px solid rgba(168,85,247,0.38);
+        transition: box-shadow 0.3s ease;
+    }
+
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,#9333ea,#22d3ee);
+            opacity: 0;
+            transition: opacity 0.32s ease;
+        }
+
+        .btn-glow:hover::before {
+            opacity: 1;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 22px rgba(168,85,247,0.48),0 0 50px rgba(168,85,247,0.14);
+        }
+
+        .btn-glow > * {
+            position: relative;
+            z-index: 1;
+        }
+
+    /* ─────────────────────────────────────────────────────
+     SECTION-PAD — FIX FOR NAVBAR GAP
+     ─────────────────────────────────────────────────────
+     Old: padding-top 6.5rem (104px) stacked on top of
+          the page wrapper's pt-24 (96px) = 200px gap ❌
+
+     New: section-pad ONLY adds breathing-room padding
+          (not navbar clearance — that comes from the
+          outer page wrapper's responsive pt-*).
+
+     Mobile  : top 1.5rem  (24px) — wrapper already cleared nav
+     Tablet  : top 2.5rem  (40px)
+     Desktop : top 5rem    (80px)
+     ───────────────────────────────────────────────────── */
+    .section-pad {
+        padding-top: 1.5rem; /* 24px  — mobile */
+        padding-bottom: 4rem; /* 64px  — mobile */
+    }
+
+    /* ─────────────────────────────────────────────────────
+     PAGE-TOP — navbar clearance wrapper
+     Use this on the outermost page div instead of pt-24.
+     Calculates exactly: navbar height + small breath.
+
+     Mobile  : 56px nav + 8px gap  = ~64px  (pt-16)
+     Tablet  : 60px nav + 12px gap = ~72px
+     Desktop : 68px nav + 16px gap = ~84px  (~pt-20)
+     ───────────────────────────────────────────────────── */
+    .page-top {
+        padding-top: 4rem; /* 64px  — mobile (covers 56px navbar + gap) */
+    }
+
+    .container-custom {
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: clamp(1rem,4vw,3.5rem);
+    }
+
+    .tag {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.28rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(168,85,247,0.08);
+        border: 1px solid rgba(168,85,247,0.22);
+        color: #c084fc;
+        display: inline-block;
+    }
+
+    .skeleton {
+        background: linear-gradient(90deg, rgba(168,85,247,0.04) 0%, rgba(168,85,247,0.12) 50%, rgba(168,85,247,0.04) 100%);
+        background-size: 200% 100%;
+        animation: shimmer 1.8s linear infinite;
+    }
+}
+
+/* ── Responsive section-pad & page-top ─────────────────────── */
+@media (min-width: 640px) {
+    .section-pad {
+        padding-top: 2.5rem;
+        padding-bottom: 5rem;
+    }
+
+    .page-top {
+        padding-top: 4.5rem;
+    }
+    /* 72px */
+}
+
+@media (min-width: 768px) {
+    .section-pad {
+        padding-top: 3.5rem;
+        padding-bottom: 6rem;
+    }
+
+    .page-top {
+        padding-top: 5rem;
+    }
+    /* 80px */
+}
+
+@media (min-width: 1024px) {
+    .section-pad {
+        padding-top: 5rem;
+        padding-bottom: 7rem;
+    }
+
+    .page-top {
+        padding-top: 5.25rem;
+    }
+    /* 84px */
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes gradient-shift {
+    0%,100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+canvas {
+    display: block;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install --legacy-peer-deps",
+  "regions": ["bom1"],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "GITHUB_USERNAME": "@github_username",
+    "GITHUB_TOKEN": "@github_token",
+    "LEETCODE_USERNAME": "@leetcode_username"
+  }
+}
