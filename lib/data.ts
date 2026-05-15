@@ -17,7 +17,7 @@ export const PERSONAL = {
     github:      "https://github.com/Patel-Krish26",
     linkedin:    "https://linkedin.com/in/krish-patel",
     leetcode:    "https://leetcode.com/u/gQqv4O2dMw/",
-    instagram:   "https://instagram.com/krish_patel_26",
+    instagram:   "https://instagram.com/kkrriisshh_8",
     snapchat:    "https://snapchat.com/add/krish_patel26",
     whatsapp:    "https://wa.me/918238775747?text=Hi%20Krish%2C%20I%20found%20your%20portfolio!",
     resume:      "/resume.pdf",
