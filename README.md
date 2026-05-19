@@ -1,2 +1,1 @@
-You just love it
-cinematicportfolioo.netlify.app
+Live Demo: https://cinematicportfolioo.netlify.app
